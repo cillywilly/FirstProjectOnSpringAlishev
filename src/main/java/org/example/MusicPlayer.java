@@ -1,5 +1,6 @@
 package org.example;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -7,6 +8,7 @@ import java.util.List;
 
 @Component
 public class MusicPlayer {
+    @Autowired
     private List<Music> musicList = new ArrayList<>();
 
     private String name;
@@ -35,16 +37,19 @@ public class MusicPlayer {
         this.volume = volume;
     }
 
-    public MusicPlayer() {
-    }
+////    @Autowired-----------------------------------и тут можно
+//    public MusicPlayer(List<Music> musicList) {
+//        this.musicList = musicList;
+//    }
+//
+////    @Autowired-----------------------------------и тут можно
+//    public void setMusicList(List<Music> musicList) {
+//        this.musicList = musicList;
+//    }
 
-    public void setMusicList(List<Music> musicList) {
-        this.musicList = musicList;
-    }
-
-    public List<Music> getMusicList() {
-        return musicList;
-    }
+//    public List<Music> getMusicList() {
+//        return musicList;
+//    }
 
     public void playMusicList() {
         musicList.forEach(i-> System.out.println(i.getSong()));
