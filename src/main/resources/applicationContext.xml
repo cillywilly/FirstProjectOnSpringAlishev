@@ -6,14 +6,19 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/util https://www.springframework.org/schema/util/spring-util.xsd">
     <context:property-placeholder location="classpath:musicPlayer.properties"/>
+
     <bean id="classicalMusicBean"
-          class="org.example.ClassicalMusic"/>
+          class="org.example.ClassicalMusic"
+    init-method="doMyInit"
+    destroy-method="doMyDestroy"
+    factory-method="getClassicalMusicfabr"/><!--фабричный метод у скоупа синглтон вызывается 1 раз-->
 
     <bean id="rockMusicBean"
           class="org.example.RockMusic"/>
 
     <bean id="popMusicBean"
           class="org.example.PopMusic"/>
+
     <bean id="musicList" class="java.util.ArrayList">
         <constructor-arg>
             <list>
@@ -26,7 +31,9 @@
 
     <bean id="musicPlayer"
           scope="prototype"
-          class="org.example.MusicPlayer">
+          class="org.example.MusicPlayer"
+    init-method="initMusicPlayer"
+    destroy-method="destroyMusicPlayer">
         <property name="musicList" ref="musicList"/>
 <!--        <util:list id="musicList" value-type="org.example.Music"/>-->
         <property name="name" value="${musicPlayer.name}"/>

@@ -9,6 +9,13 @@ public class MusicPlayer {
     private String name;
     private int volume;
 
+    public void initMusicPlayer() {
+        System.out.println("sozdal musicPLayer");
+    }
+
+    public void destroyMusicPlayer() {
+        System.out.println("ydalil musicPlayer");//не вызывается у бина со скоупом прототайп
+    }
     public String getName() {
         return name;
     }
