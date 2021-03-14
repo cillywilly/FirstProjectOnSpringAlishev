@@ -1,8 +1,10 @@
 package org.example;
 
-public class ClassicalMusic implements Music {
+import org.springframework.stereotype.Component;
 
-    private ClassicalMusic() {}//для фабричного метода
+@Component("classssicalMusic")
+public class ClassicalMusic implements Music {
+private ClassicalMusic() {}//для фабричного метода
 
     public static ClassicalMusic getClassicalMusicfabr() {
         return new ClassicalMusic();

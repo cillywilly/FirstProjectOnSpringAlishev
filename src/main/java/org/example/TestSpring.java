@@ -22,6 +22,9 @@ public class TestSpring {
         System.out.println("first volume : " + firstMusicPlayer.getVolume());
         System.out.println("second volume : " + secondMusicPlayer.getVolume());
 
+        Music music = context.getBean("classssicalMusic", Music.class);
+        System.out.println(music.getSong());
+
         context.close();
     }
 }
