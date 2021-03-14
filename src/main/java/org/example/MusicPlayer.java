@@ -11,23 +11,23 @@ public class MusicPlayer {
     @Autowired
     private List<Music> musicList = new ArrayList<>();
 
-    private String name;
+//    private String name;
     private int volume;
 
-    public void initMusicPlayer() {
-        System.out.println("sozdal musicPLayer");
-    }
+//    public void initMusicPlayer() {
+//        System.out.println("sozdal musicPLayer");
+//    }
 
-    public void destroyMusicPlayer() {
-        System.out.println("ydalil musicPlayer");//не вызывается у бина со скоупом прототайп
-    }
-    public String getName() {
-        return name;
-    }
+//    public void destroyMusicPlayer() {
+//        System.out.println("ydalil musicPlayer");//не вызывается у бина со скоупом прототайп
+//    }
+//    public String getName() {
+//        return name;
+//    }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+//    public void setName(String name) {
+//        this.name = name;
+//    }
 
     public int getVolume() {
         return volume;
@@ -52,7 +52,7 @@ public class MusicPlayer {
 //    }
 
     public void playMusicList() {
-        musicList.forEach(i-> System.out.println(i.getSong()));
+        musicList.forEach(i ->System.out.println(i.getSong()));
     }
 
 }
