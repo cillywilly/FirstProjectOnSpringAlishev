@@ -1,17 +1,27 @@
 package org.example;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Random;
 
 @Component
 public class MusicPlayer {
-    @Autowired
-    private List<Music> musicList = new ArrayList<>();
+    private Music rockMusic;
+    private Music clasMusic;
+    private Music popMusic;
 
-//    private String name;
+    @Autowired
+    public MusicPlayer(@Qualifier("rockMusic") Music rockMusic,
+                       @Qualifier("classicalMusic") Music clasMusic,
+                       @Qualifier("popMusic") Music popMusic) {
+        this.rockMusic = rockMusic;
+        this.clasMusic = clasMusic;
+        this.popMusic = popMusic;
+    }
+
+    //    private String name;
     private int volume;
 
 //    public void initMusicPlayer() {
@@ -51,8 +61,22 @@ public class MusicPlayer {
 //        return musicList;
 //    }
 
-    public void playMusicList() {
-        musicList.forEach(i ->System.out.println(i.getSong()));
+    public void playMusicList(MusicType musicType) {
+        int randomInt = new Random().nextInt(3);
+        switch (musicType) {
+            case POP_MUSIC:
+                popMusic = new PopMusic();
+                System.out.println(popMusic.getSongList().get(randomInt));
+                break;
+            case ROCK_MUSIC:
+                rockMusic = new RockMusic();
+                System.out.println(rockMusic.getSongList().get(randomInt));
+                break;
+            case CLASSIC_MUSIC:
+                clasMusic = new ClassicalMusic();
+                System.out.println(clasMusic.getSongList().get(randomInt));
+                break;
+        }
     }
 
 }
