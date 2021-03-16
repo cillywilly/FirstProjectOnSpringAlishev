@@ -1,18 +1,17 @@
 package org.example;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Value;
 
+import java.util.ArrayList;
 import java.util.Random;
 
-@Component
 public class MusicPlayer {
     private Music rockMusic;
     private Music clasMusic;
     private Music popMusic;
+    private ArrayList<Music> musicWawes;
 
-    @Autowired
     public MusicPlayer(@Qualifier("rockMusic") Music rockMusic,
                        @Qualifier("classicalMusic") Music clasMusic,
                        @Qualifier("popMusic") Music popMusic) {
@@ -21,23 +20,29 @@ public class MusicPlayer {
         this.popMusic = popMusic;
     }
 
-    //    private String name;
+    @Value("${musicPlayer.name}")
+    private String name;
+    @Value("${musicPlayer.volume}")
     private int volume;
+
+    public MusicPlayer(ArrayList<Music> musicWawes) {
+        this.musicWawes=musicWawes;
+    }
 
 //    public void initMusicPlayer() {
 //        System.out.println("sozdal musicPLayer");
 //    }
 
-//    public void destroyMusicPlayer() {
+    //    public void destroyMusicPlayer() {
 //        System.out.println("ydalil musicPlayer");//не вызывается у бина со скоупом прототайп
 //    }
-//    public String getName() {
-//        return name;
-//    }
+    public String getName() {
+        return name;
+    }
 
-//    public void setName(String name) {
-//        this.name = name;
-//    }
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public int getVolume() {
         return volume;
@@ -60,6 +65,11 @@ public class MusicPlayer {
 //    public List<Music> getMusicList() {
 //        return musicList;
 //    }
+
+    public void playMusicWawe(ArrayList<Music> musicWawes) {
+        int randomInt = new Random().nextInt(3);
+        System.out.println(musicWawes.get(randomInt).getSong());
+    }
 
     public void playMusicList(MusicType musicType) {
         int randomInt = new Random().nextInt(3);
